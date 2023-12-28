@@ -224,7 +224,7 @@ const changecurrentpassword = asynchandler(async(req,res)=>{
 
 const getcurrentuser = asynchandler(async(req,res)=>{
     return res.status(200)
-    .json(200,req.user,"current user fatch succesfully")
+    .json(new Apiresponse(200,req.user,"current user fatch succesfully"))
 })
 
 const updateaccountdetail = asynchandler(async(req,res)=>{
@@ -262,6 +262,7 @@ const updateuseravtar = asynchandler(async(req,res)=>{
    .json(new Apiresponse (200,user,"avtar updated succesfully"))
 
 })
+
 const updateusercoverimage = asynchandler(async(req,res)=>{
    const coverimagelp = req.file?.path
    if(!coverimagelp){
@@ -342,7 +343,7 @@ const getuserchennelprofile = asynchandler(async(req,res)=>{
         }
     ])
 
-    if(!chennel?.length){
+    if(!chennel){
         throw new ApiError(404,"chennel dose not exist")
     }
     return res.status(200)
