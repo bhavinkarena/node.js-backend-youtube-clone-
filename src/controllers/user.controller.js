@@ -133,7 +133,7 @@ const loginuser = asynchandler(async(req,res)=>{
 
     const {accesstoken,refreshtoken} = await genrateaccessrefereshtoken(user._id)
 
-    const loggedinuer = await User.findById(user._id).select("-password -refreshtoken")
+    const loggedinuser = await User.findById(user._id).select("-password -refreshtoken")
 
     const options = {
         httpOnly:true,
@@ -143,7 +143,7 @@ const loginuser = asynchandler(async(req,res)=>{
     .cookie("accesstoken",accesstoken,options)
     .cookie("refreshtoken",refreshtoken,options)
     .json(new Apiresponse(200,{
-        user:loggedinuer,accesstoken,refreshtoken
+        user:loggedinuser,accesstoken,refreshtoken
     },"user loggedin successfully"))
 })
 
@@ -362,5 +362,7 @@ export {
     updateusercoverimage,
     getuserchennelprofile
 };
+
+
 
 

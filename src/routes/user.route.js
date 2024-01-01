@@ -38,7 +38,9 @@ router.route("/currentuser").get(verifyjwt,getcurrentuser)
 router.route("/update-details").patch(verifyjwt,updateaccountdetail)
 
 router.route("/avtar").patch(verifyjwt,upload.single("avtar"),updateuseravtar)
+
 router.route("/coverimage").patch(verifyjwt,upload.single("coverimage"),updateusercoverimage)
+
 router.route("/c/:username").get(verifyjwt,getuserchennelprofile)
 
 
