@@ -23,7 +23,7 @@ const genrateaccessrefereshtoken = async(userId)=>{
     }
 }
 
-const registeruser = asynchandler(async (req, res) => {
+const registeruser = asynchandler(async (req, res) => { 
     //get user details from frontend
     //validation - not empty
     //check user alreddy exits  :  username or email
@@ -154,7 +154,7 @@ const logoutuser = asynchandler(async(req,res)=>{
     await User.findByIdAndUpdate(
         req.user._id,
         {
-            $set:{refreshtoken:undefined}
+            $unset:{refreshtoken:1}
         },
         {
             new:true
@@ -223,8 +223,8 @@ const changecurrentpassword = asynchandler(async(req,res)=>{
 })
 
 const getcurrentuser = asynchandler(async(req,res)=>{
-    return res.status(200)
-    .json(new Apiresponse(200,req.user,"current user fatch succesfully"))
+        return res.status(200)
+        .json(new Apiresponse(200,req.user,"current user fatch succesfully"))
 })
 
 const updateaccountdetail = asynchandler(async(req,res)=>{
